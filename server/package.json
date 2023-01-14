@@ -13,7 +13,7 @@
     "nodemon": "^2.0.20",
     "openai": "^3.1.0"
   },
-  "main": "index.js",
+  "main": "index.cjs",
   "author": "",
   "license": "ISC",
   "description": ""
