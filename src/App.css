@@ -25,11 +25,11 @@
 
 .chat-input-holder {
   padding:24px;
-  position:absolute;
-  bottom:0;
-  left:0;right:0;
   display:flex;
   justify-content: center;
+  position:fixed;
+  bottom:0;
+  z-index:999;
 }
 .chat-input-textarea {
   background-color: transparent;
