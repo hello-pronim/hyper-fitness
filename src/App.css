@@ -27,9 +27,10 @@
   padding:24px;
   display:flex;
   justify-content: center;
-  position:fixed;
+  position:absolute;
   bottom:0;
   z-index:999;
+  width:100vw;
 }
 .chat-input-textarea {
   background-color: transparent;
@@ -60,28 +61,33 @@
 }
 .chat-log {
   position: absolute;
-  top:0;right:0;bottom:89px;left:0;
+  top:0px;right:0;bottom:89px;left:0;
   overflow-y:scroll;
 }
 .chat-message.chatgpt {
-  background-color:none;
+  background-color:red;  
+  text-align:left;
 }
 .chat-message-center {
   max-width:640px;
   margin-left:auto;
   margin-right:auto;
-  display:flex;
   padding:12px;
   padding-left: 24px;
   padding-right: 24px;
+  display: flex;
+  align-items: center;
 }
 .avatar {
-  width: 0px;
-  height: 0px;
+  height:8px;
+  width:8px;
 }
-.avatar.chatgpt {}
+.avatar.chatgpt {
+  border-radius:1rem;
+  background-color:blue;
+}
 .message {
-  padding-left: 40px;
+  padding-left: 16px;
   padding-right: 40px;
   font-weight:500;
 }
