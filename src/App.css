@@ -35,12 +35,9 @@
 .chat-input-textarea {
   background-color: transparent;
   text-align:center;
-  padding:12px;
   border: 4px solid black;
   outline:none;
   border-radius: 99rem;
-  height:100px;
-  width:100px;
   color:white;
   z-index:999;
 }
@@ -170,7 +167,7 @@
 }*/
 
 .circle {
-  background: rgb(0, 0, 0);
+  background: rgb(0, 0, 0, 0.55);
   color:white!important;
   position: relative;
   z-index: 0;
