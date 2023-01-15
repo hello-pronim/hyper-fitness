@@ -68,8 +68,6 @@
 }
 .chat-message.chatgpt {
   text-align:left;
-  background:#1a1a1a;
-  padding:16px 0;
   margin:12px 0;
 }
 .chat-message-center {
@@ -173,6 +171,7 @@
 
 .circle {
   background: black;
+  color:white!important;
   position: relative;
   z-index: 0;
   filter: contrast(1.5) brightness(2);
@@ -184,7 +183,7 @@
   right: 40px;
   bottom: 40px;
   position: absolute;
-  border-radius: 50%;
+  border-radius: 50rem;
   border: 5px solid #00b7ff;
   box-sizing: border-box;
   z-index: 0;

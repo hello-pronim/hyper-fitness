@@ -9,14 +9,12 @@ const ChatBox = ({chatLog, setChatInput, handleSubmit, chatInput}) =>
         ))}
       </div>
         <div className="chat-input-holder">
-      <form className="form" onSubmit={handleSubmit}>
-        <div class="circle">
+      <form className="form circle" onSubmit={handleSubmit}>
           <input 
           rows="1"
           value={chatInput}
           onChange={(e)=> setChatInput(e.target.value)}
           className="chat-input-textarea noise animated" ></input>
-          </div>
           </form>
         </div>
       </section>
