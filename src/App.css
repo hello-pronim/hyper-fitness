@@ -28,7 +28,6 @@
   position:absolute;
   bottom:0;
   left:0;right:0;
-  border-top:2px solid black;
   display:flex;
   justify-content: center;
 }
@@ -40,8 +39,8 @@
   border: 4px solid black;
   outline:none;
   border-radius: 99rem;
-  height:120px;
-  width:120px;
+  height:100px;
+  width:100px;
 }
 .chat-input-textarea:focus {
   width: 90vw;
