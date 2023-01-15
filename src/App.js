@@ -1,7 +1,6 @@
 import './normal.css';
 import './App.css';
 import { useState, useEffect } from 'react';
-import SideMenu from './SideMenu'
 import ChatBox from './ChatBox'
 
 function App() {
@@ -14,10 +13,7 @@ function App() {
   const [models, setModels] = useState([]);
   const [temperature, setTemperature] = useState(0.5);
   const [currentModel, setCurrentModel] = useState("text-davinci-003");
-  const [chatLog, setChatLog] = useState([{
-    user: "gpt",
-    message: "How can I help you today?"
-  }]);
+  const [chatLog, setChatLog] = useState([{}]);
 
   // clear chats
   function clearChat(){
@@ -76,14 +72,6 @@ function App() {
 
   return (
     <div className="App">
-      <SideMenu
-        currentModel={currentModel} 
-        setCurrentModel={setCurrentModel} 
-        models={models}
-        setTemperature={handleTemp}
-        temperature={temperature}
-        clearChat={clearChat}
-      />
       <ChatBox 
         chatInput={chatInput}
         chatLog={chatLog} 

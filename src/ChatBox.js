@@ -1,4 +1,4 @@
-import HyperSVGLogo from './HyperSVGLogo'
+import HyperSVGLogo from './HyperSVGLogo.js'
 
 // Primary Chat Window
 const ChatBox = ({chatLog, setChatInput, handleSubmit, chatInput}) =>
@@ -15,7 +15,6 @@ const ChatBox = ({chatLog, setChatInput, handleSubmit, chatInput}) =>
           value={chatInput}
           onChange={(e)=> setChatInput(e.target.value)}
           className="chat-input-textarea" ></input>
-          <button className="submit" type="submit">Submit</button>
           </form>
         </div>
       </section>
@@ -26,7 +25,7 @@ const ChatMessage = ({ message }) => {
     <div className={`chat-message ${message.user === "gpt" && "chatgpt"}`}>
     <div className="chat-message-center">
       <div className={`avatar ${message.user === "gpt" && "chatgpt"}`}>
-        {message.user === "gpt" ? <HyperSVGLogo /> : <div>You</div>}
+        {message.user === "gpt" ? <HyperSVGLogo /> : <div></div>}
       </div>
       <div className="message">
         {message.message}
