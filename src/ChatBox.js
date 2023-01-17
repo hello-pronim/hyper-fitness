@@ -1,7 +1,6 @@
 import HyperSVGLogo from './HyperSVGLogo.js'
 import ChatHandler from './ChatHandler'
 
-
 // Primary Chat Window
 const ChatBox = ({chatLog, setChatInput, handleSubmit, chatInput}) =>
   <section className="chatbox">

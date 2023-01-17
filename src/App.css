@@ -19,7 +19,27 @@
   left:0;
   display:flex;
   justify-content: left;
-  padding: 16px;
+  padding:0 16px 42px 16px;
+}
+.avatar {
+  background:transparent;
+  border-radius:50%;
+  width: 8px;
+  height: 8px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:5px;
+  font-size:14px;
+  color:#444654;
+}
+.avatar.chatgpt {
+  background:#00b7ff;
+  border-radius:50%;
+  min-width: 8px;
+  min-height: 8px;
+  padding:5px;
+  color:white;
 }
 .App-header {
   display: flex;
@@ -94,7 +114,7 @@
   border: 5px solid rgba(198, 247, 255, 0.6);
   box-sizing: border-box;
   z-index: 0;
-  filter: blur(12px);
+  filter: blur(100px);
 }
 .circle:hover::before {
   -webkit-animation: main-color 5s ease-in-out alternate infinite;
