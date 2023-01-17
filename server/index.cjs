@@ -33,19 +33,9 @@ app.post('/', async (req, res) => {
 		* 1.3g protein
 		* 27g carbohydrates
 		* 0.3g fat\n
-		Human: I ate an apple, an orange and a banana\n
-		Hyper: Nice work. **1 apple**, **1 orange** and **1 banana** contain the following:\n
-		* 300 calories
-		* 3.9g protein
-		* 81g carbohydrates
-		* 0.9g fat\n
-		Human: I need a meal plan for this week
-		Hyper: Here's a meal plan for this week:\n
-		- **Monday**: food item 1, food item 2, food item 3
-		- **Tuesday**: food item 1, food item 2, food item 3
 		Human: ${message}.\n`,
 		max_tokens: 256,
-		temperature: 0,
+		temperature: 0.7,
 		top_p: 0.9,
 		frequency_penalty: 0,
 		presence_penalty: -2.0,

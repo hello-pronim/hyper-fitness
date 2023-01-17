@@ -1,4 +1,6 @@
 import HyperSVGLogo from './HyperSVGLogo.js'
+import ChatHandler from './ChatHandler'
+
 
 // Primary Chat Window
 const ChatBox = ({chatLog, setChatInput, handleSubmit, chatInput}) =>
@@ -8,17 +10,19 @@ const ChatBox = ({chatLog, setChatInput, handleSubmit, chatInput}) =>
           <ChatMessage key={index} message={message} />
         ))}
       </div>
-        <div className="chat-input-holder">
-      <form className="form" onSubmit={handleSubmit}>
-        <div class="circle">
-          <input 
-          rows="1"
-          value={chatInput}
-          onChange={(e)=> setChatInput(e.target.value)}
-          className="chat-input-textarea noise animated" ></input>
-          </div>
+      <div className="menu-bar">
+        <div className="orb-container radius">
+        <div class="circle radius">
+          <form className="form" onSubmit={handleSubmit}>
+              <input
+              value={chatInput}
+              onChange={(e)=> setChatInput(e.target.value)}
+              className="chat-input radius"></input>
           </form>
+          <div class="radius noise"></div>
+          </div>
         </div>
+      </div>
       </section>
 
 // Individual Chat Message
