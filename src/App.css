@@ -24,8 +24,8 @@
 .avatar {
   background:transparent;
   border-radius:50%;
-  width: 8px;
-  height: 8px;
+  width: 4px;
+  height: 4px;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -36,8 +36,6 @@
 .avatar.chatgpt {
   background:#00b7ff;
   border-radius:50%;
-  min-width: 8px;
-  min-height: 8px;
   padding:5px;
   color:white;
 }
@@ -54,7 +52,7 @@
 }
 .chat-log {
   position: absolute;
-  top:0px;right:0;bottom:89px;left:0;
+  right:0;bottom:140px;left:0;
   overflow-y:scroll;
 }
 .chat-message.chatgpt {
