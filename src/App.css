@@ -2,8 +2,8 @@
   display:flex;
   position:absolute;
   top:0;bottom:0;right:0;left:0;
-  background: black;
-  color: white;
+  background: #F2F2F2;
+  color: black;
 }
 .chatbox {
   flex:1;
@@ -19,7 +19,10 @@
   left:0;
   display:flex;
   justify-content: left;
-  padding:0 16px 42px 16px;
+  padding:42px 16px;
+  transition: 2s all;
+  -webkit-transition: 2s all;
+  background: white;
 }
 .avatar {
   background:transparent;
@@ -113,7 +116,7 @@
   box-sizing: border-box;
   z-index: 0;
   filter: blur(100px);
-}
+}/*
 .circle:hover::before {
   -webkit-animation: main-color 5s ease-in-out alternate infinite;
           animation: main-color 5s ease-in-out alternate infinite;
@@ -121,7 +124,7 @@
 .circle:hover::after {
   -webkit-animation: main-color 5s ease-in-out alternate infinite;
           animation: main-color 5s ease-in-out alternate infinite;
-}
+}*/
 .chat-input {
   z-index: 2;
   position: absolute;
@@ -131,7 +134,7 @@
   bottom: 3.5px;
   padding: 0 16px;
   font-size: 1em;
-  background: #000;
+  background: #fff;
   color: white;
   border:0 none;
   transition: width 0.225s ease-in-out;
