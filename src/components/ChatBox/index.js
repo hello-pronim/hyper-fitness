@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import ChatHandler from "./ChatHandler";
-import ChatMessage from "./ChatMessage";
-import MenuBar from "./MenuBar";
+import ChatHandler from "../ChatHandler";
+import ChatMessage from "../ChatMessage";
+import MenuBar from "../MenuBar";
 
 // Primary Chat Window
 const ChatBox = () => {
@@ -17,7 +17,7 @@ const ChatBox = () => {
   }, []);
 
   const getEngines = () => {
-    fetch("http://localhost:3080/models")
+    fetch(`${process.env.REACT_APP_API_URL}/models`)
       .then((res) => res.json())
       .then((data) => {
         console.log(data.models.data);
@@ -43,7 +43,7 @@ const ChatBox = () => {
     // fetch response to the api combining the chat log array of messages and seinding it as a message to localhost:3000 as a post
     const messages = chatLogNew.map((message) => message.message).join("\n");
 
-    const response = await fetch("https://hyper-dp3c.onrender.com/", {
+    const response = await fetch(process.env.REACT_APP_RENDER_URL, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

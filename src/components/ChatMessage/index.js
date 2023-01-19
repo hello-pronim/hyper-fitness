@@ -1,4 +1,4 @@
-import HyperSVGLogo from "./HyperSVGLogo";
+import HyperSVGLogo from "../HyperSVGLogo";
 
 // Individual Chat Message
 const ChatMessage = ({ message }) => {
