@@ -1,0 +1,22 @@
+.sign-in {
+  height: calc(100vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sign-in-wrapper {
+  min-width: 400px;
+  text-align: center;
+  padding: 30px;
+  border: 1px solid lightgrey;
+  border-radius: 8px;
+}
+.sign-in-buttons {
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+}
+.error-msg {
+  color: red;
+  font-size: 12px;
+}

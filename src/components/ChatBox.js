@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 
-import ChatHandler from "../ChatHandler";
-import ChatMessage from "../ChatMessage";
-import MenuBar from "../MenuBar";
+import ChatHandler from "./ChatHandler";
+import ChatMessage from "./ChatMessage";
+import MenuBar from "./MenuBar";
 
 // Primary Chat Window
 const ChatBox = () => {

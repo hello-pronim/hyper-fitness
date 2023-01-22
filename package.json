@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@greatsumini/react-facebook-login": "^3.3.1",
+    "@leecheuk/react-google-login": "^5.4.1",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
@@ -14,7 +16,9 @@
     "nodemon": "^2.0.20",
     "openai": "^3.1.0",
     "react": "^18.2.0",
+    "react-apple-login": "^1.1.6",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.7.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
