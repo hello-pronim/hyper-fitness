@@ -38,6 +38,7 @@ const AuthProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const initialize = useCallback(async () => {
+    localStorage.clear();
     dispatch({
       type: INITIALIZE,
       payload: {
@@ -49,14 +50,22 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    initialize();
-    const interval = setInterval(() => {
-      initialize();
-    }, 10000);
-    return () => clearInterval(interval);
-  }, [initialize]);
+    if (localStorage.getItem("user")) {
+      const data = localStorage.getItem("user");
+
+      dispatch({
+        type: INITIALIZE,
+        payload: {
+          isAuthenticated: true,
+          user: data?.user,
+          authType: data?.authType,
+        },
+      });
+    }
+  }, []);
 
   const signIn = useCallback((authUser, authUserType) => {
+    localStorage.setItem("user", { user: authUser, authType: authUserType });
     dispatch({
       type: INITIALIZE,
       payload: {
@@ -68,6 +77,7 @@ const AuthProvider = ({ children }) => {
   }, []);
 
   const signOut = useCallback(() => {
+    localStorage.clear();
     dispatch({
       type: INITIALIZE,
       payload: {
