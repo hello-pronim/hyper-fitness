@@ -1,31 +1,35 @@
-import React, { useContext, useState } from "react";
-import AppleLogin from "react-apple-login";
-import FacebookLogin from "@greatsumini/react-facebook-login";
-import GoogleLogin from "@leecheuk/react-google-login";
+import React, { useContext, useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import {
+  LoginSocialGoogle,
+  LoginSocialFacebook,
+  LoginSocialApple,
+} from "reactjs-social-login";
+import {
+  FacebookLoginButton,
+  GoogleLoginButton,
+  AppleLoginButton,
+} from "react-social-login-buttons";
 
 import "./index.css";
 import { AuthContext } from "../../../contexts/AuthContext";
 
-const SignIn = () => {
-  const { signIn } = useContext(AuthContext);
+const SignIn = (props) => {
+  const navigate = useNavigate();
+  const { user, signIn } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");
+  const REDIRECT_URI = "http://localhost:3000/";
 
-  const responseGoogle = (response) => {
-    if (response.error === "popup_closed_by_user") {
-      setErrorMsg("Authentication canceled by user");
-    }
-    console.log("google", response);
-    // signIn({ user, google: response });
+  useEffect(() => {
+    if (user) navigate("/");
+  }, [user, navigate]);
+
+  const handleLoginSuccess = async ({ provider, data }) => {
+    await signIn(data, provider);
+    navigate("/");
   };
-
-  const responseFacebook = (response) => {
-    console.log("google", response);
-    // setUser({ ...user, facebook: response });
-  };
-
-  const responseApple = (response) => {
-    console.log("google", response);
-    // setUser({ ...user, apple: response });
+  const handleLoginFailure = (err) => {
+    console.log(err);
   };
 
   return (
@@ -41,28 +45,37 @@ const SignIn = () => {
             <></>
           )}
           <div className="sign-in-buttons">
-            <GoogleLogin
-              clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-              buttonText="Login with Google"
-              onSuccess={responseGoogle}
-              onFailure={responseGoogle}
-              cookiePolicy={"single_host_origin"}
-            />
-            <FacebookLogin
-              appId="YOUR_FACEBOOK_APP_ID"
-              autoLoad={false}
-              fields="name,email,picture"
-              callback={responseFacebook}
-            />
-            <AppleLogin
-              clientId="YOUR_APPLE_CLIENT_ID"
-              redirectURI="https://your-redirect-uri/"
-              onSuccess={responseApple}
-              onError={responseApple}
-              scope={["name", "email"]}
-              buttonText="Continue with Apple"
-              usePopup={false}
-            />
+            <LoginSocialGoogle
+              client_id={process.env.REACT_APP_GG_APP_ID || ""}
+              redirect_uri={REDIRECT_URI}
+              scope="openid profile email"
+              discoveryDocs="claims_supported"
+              access_type="offline"
+              onResolve={handleLoginSuccess}
+              onReject={handleLoginFailure}
+            >
+              <GoogleLoginButton />
+            </LoginSocialGoogle>
+            <LoginSocialFacebook
+              appId={process.env.REACT_APP_FB_APP_ID || ""}
+              fieldsProfile={
+                "id,first_name,last_name,middle_name,name,name_format,picture,short_name,email,gender"
+              }
+              redirect_uri={REDIRECT_URI}
+              onResolve={handleLoginSuccess}
+              onReject={handleLoginFailure}
+            >
+              <FacebookLoginButton />
+            </LoginSocialFacebook>
+            <LoginSocialApple
+              client_id={process.env.REACT_APP_APPLE_ID || ""}
+              scope={"name email"}
+              redirect_uri={REDIRECT_URI}
+              onResolve={handleLoginSuccess}
+              onReject={handleLoginFailure}
+            >
+              <AppleLoginButton />
+            </LoginSocialApple>
           </div>
         </div>
       </div>

@@ -1,5 +1,7 @@
 import React from "react";
 
+import "./index.css";
+
 const MenuBar = ({ chatInput, setChatInput, handleSubmit }) => (
   <div className="menu-bar">
     <div className="orb-container radius">

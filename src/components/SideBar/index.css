@@ -1,0 +1,33 @@
+.side-bar {
+  width: 240px;
+  height: calc(100vh - 64px);
+  position: relative;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+.side-bar-menu-wrapper {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  border-top: 1px solid lightgrey;
+}
+.side-bar-menu {
+  list-style-type: none;
+  padding: 0;
+}
+.side-bar-menu-item {
+  padding: 16px 16px;
+  cursor: pointer;
+}
+.side-bar-menu-item:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+.side-bar-menu-item a {
+  text-decoration: none;
+}
+.side-bar-menu-item-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}

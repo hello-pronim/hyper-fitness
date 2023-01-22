@@ -1,0 +1,20 @@
+.home {
+  height: calc(100vh - 64px);
+  position: relative;
+}
+.page-container {
+  position: absolute;
+  left: 240px;
+  top: 0;
+  width: calc(100vw - 240px);
+}
+.chat-log {
+  background-color: #f2f2f2;
+  width: 100%;
+  height: calc(100vh - 64px);
+  overflow-y: scroll;
+  padding-bottom: 128px;
+}
+.chat-log-container {
+  padding: 32px;
+}

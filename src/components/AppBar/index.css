@@ -2,17 +2,20 @@
   background-color: #3f51b5;
   color: #fff;
   height: 64px;
-  position: "relative";
+  position: relative;
   padding: 0 32px;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  z-index: 100;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4);
 }
 .app-bar-menu {
   list-style-type: none;
 }
 .app-bar-menu-item {
   color: #fff;
+  cursor: pointer;
 }
 .app-bar-menu-item a {
   color: inherit;

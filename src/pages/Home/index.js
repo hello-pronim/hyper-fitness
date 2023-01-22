@@ -1,16 +1,17 @@
+import "./index.css";
+
 import { useState, useEffect } from "react";
 
-import ChatHandler from "./ChatHandler";
-import ChatMessage from "./ChatMessage";
-import MenuBar from "./MenuBar";
+import ChatMessage from "../../components/ChatMessage";
+import MenuBar from "../../components/MenuBar";
+import SideBar from "../../components/SideBar";
 
-// Primary Chat Window
-const ChatBox = () => {
+const Home = () => {
   const [chatInput, setChatInput] = useState("");
   const [models, setModels] = useState([]);
   const [temperature, setTemperature] = useState(0.5);
   const [currentModel, setCurrentModel] = useState("text-davinci-003");
-  const [chatLog, setChatLog] = useState([{}]);
+  const [chatLog, setChatLog] = useState([]);
 
   useEffect(() => {
     getEngines();
@@ -20,7 +21,6 @@ const ChatBox = () => {
     fetch(`${process.env.REACT_APP_API_URL}/models`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data.models.data);
         // set models in order alphabetically
         data.models.data.sort((a, b) => {
           if (a.id < b.id) {
@@ -76,19 +76,24 @@ const ChatBox = () => {
   };
 
   return (
-    <section className="chat-box">
-      <div className="chat-log">
-        {chatLog.map((message, index) => (
-          <ChatMessage key={index} message={message} />
-        ))}
+    <div className="home">
+      <SideBar />
+      <div className="page-container">
+        <div className="chat-log">
+          <div className="chat-log-container">
+            {chatLog.map((message, index) => (
+              <ChatMessage key={index} message={message} />
+            ))}
+          </div>
+        </div>
+        <MenuBar
+          chatInput={chatInput}
+          setChatInput={setChatInput}
+          handleSubmit={handleSubmit}
+        />
       </div>
-      <MenuBar
-        chatInput={chatInput}
-        setChatInput={setChatInput}
-        handleSubmit={handleSubmit}
-      />
-    </section>
+    </div>
   );
 };
 
-export default ChatBox;
+export default Home;

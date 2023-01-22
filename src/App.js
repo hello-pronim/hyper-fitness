@@ -1,19 +1,15 @@
 import "./normal.css";
 import "./App.css";
 
-import { useContext } from "react";
 import { Navigate, Route, Routes } from "react-router-dom";
 
-import { AuthContext } from "./contexts/AuthContext";
 import AppBar from "./components/AppBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
-import SignIn from "./pages/auth/SignIn";
+import SignIn from "./pages/Auth/SignIn";
 import React from "react";
 
 function App() {
-  const { user } = useContext(AuthContext);
-
   return (
     <React.Fragment>
       <AppBar />
@@ -21,7 +17,7 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute user={user}>
+            <ProtectedRoute>
               <Home />
             </ProtectedRoute>
           }

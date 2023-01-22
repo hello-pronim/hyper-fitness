@@ -1,4 +1,5 @@
 import { createContext, useCallback, useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 
 const INITIALIZE = "INITIALIZE";
 const SIGN_OUT = "SIGN_OUT";
@@ -7,18 +8,19 @@ const initialState = {
   isAuthenticated: false,
   isInitialized: false,
   user: null,
-  authType: "",
+  provider: "",
 };
 
 const reducer = (state, action) => {
   if (action.type === INITIALIZE) {
-    const { isAuthenticated, user, authType } = action.payload;
+    const { isAuthenticated, user, provider } = action.payload;
+
     return {
       ...state,
       isAuthenticated,
       isInitialized: true,
       user,
-      authType,
+      provider,
     };
   }
   if (action.type === SIGN_OUT) {
@@ -26,7 +28,7 @@ const reducer = (state, action) => {
       ...state,
       isAuthenticated: false,
       user: null,
-      authType: "",
+      provider: "",
     };
   }
   return state;
@@ -35,6 +37,7 @@ const reducer = (state, action) => {
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  const navigate = useNavigate();
   const [state, dispatch] = useReducer(reducer, initialState);
 
   const initialize = useCallback(async () => {
@@ -44,34 +47,41 @@ const AuthProvider = ({ children }) => {
       payload: {
         isAuthenticated: false,
         user: null,
-        authType: "",
+        provider: "",
       },
     });
   }, []);
 
   useEffect(() => {
-    if (localStorage.getItem("user")) {
-      const data = localStorage.getItem("user");
+    const userData = JSON.parse(localStorage.getItem("user"));
+
+    if (!userData) {
+      navigate("/sign-in");
+    } else {
+      const data = JSON.parse(localStorage.getItem("user"));
 
       dispatch({
         type: INITIALIZE,
         payload: {
           isAuthenticated: true,
           user: data?.user,
-          authType: data?.authType,
+          provider: data?.provider,
         },
       });
     }
   }, []);
 
-  const signIn = useCallback((authUser, authUserType) => {
-    localStorage.setItem("user", { user: authUser, authType: authUserType });
+  const signIn = useCallback((authUser, authProvider) => {
+    localStorage.setItem(
+      "user",
+      JSON.stringify({ user: authUser, provider: authProvider })
+    );
     dispatch({
       type: INITIALIZE,
       payload: {
         isAuthenticated: true,
         user: authUser,
-        authType: authUserType,
+        provider: authProvider,
       },
     });
   }, []);
@@ -83,7 +93,7 @@ const AuthProvider = ({ children }) => {
       payload: {
         isAuthenticated: false,
         user: null,
-        authType: "",
+        provider: "",
       },
     });
   }, []);
