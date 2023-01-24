@@ -67,7 +67,7 @@ const SignIn = (props) => {
             >
               <FacebookLoginButton />
             </LoginSocialFacebook>
-            <LoginSocialApple
+            {/* <LoginSocialApple
               client_id={process.env.REACT_APP_APPLE_ID || ""}
               scope={"name email"}
               redirect_uri={process.env.SIGNIN_SUCCESS_REDIRECT_URI}
@@ -75,7 +75,7 @@ const SignIn = (props) => {
               onReject={handleLoginFailure}
             >
               <AppleLoginButton />
-            </LoginSocialApple>
+            </LoginSocialApple> */}
           </div>
         </div>
       </div>
