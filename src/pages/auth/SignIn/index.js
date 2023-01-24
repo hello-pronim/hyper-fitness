@@ -25,6 +25,7 @@ const SignIn = (props) => {
   }, [user, navigate]);
 
   const handleLoginSuccess = async ({ provider, data }) => {
+    console.log(provider, data);
     await signIn(data, provider);
     navigate("/");
   };
