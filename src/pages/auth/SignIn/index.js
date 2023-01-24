@@ -19,6 +19,8 @@ const SignIn = (props) => {
   const { user, signIn } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");
 
+  console.log(process.env);
+
   useEffect(() => {
     if (user) navigate("/");
   }, [user, navigate]);
