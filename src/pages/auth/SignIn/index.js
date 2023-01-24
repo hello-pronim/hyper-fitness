@@ -18,7 +18,6 @@ const SignIn = (props) => {
   const navigate = useNavigate();
   const { user, signIn } = useContext(AuthContext);
   const [errorMsg, setErrorMsg] = useState("");
-  const REDIRECT_URI = "http://localhost:3000/";
 
   useEffect(() => {
     if (user) navigate("/");
@@ -48,7 +47,7 @@ const SignIn = (props) => {
           <div className="sign-in-buttons">
             <LoginSocialGoogle
               client_id={process.env.REACT_APP_GG_APP_ID || ""}
-              redirect_uri={REDIRECT_URI}
+              redirect_uri={process.env.SIGNIN_SUCCESS_REDIRECT_URI}
               scope="openid profile email"
               discoveryDocs="claims_supported"
               access_type="offline"
@@ -62,7 +61,7 @@ const SignIn = (props) => {
               fieldsProfile={
                 "id,first_name,last_name,middle_name,name,name_format,picture,short_name,email,gender"
               }
-              redirect_uri={REDIRECT_URI}
+              redirect_uri={process.env.SIGNIN_SUCCESS_REDIRECT_URI}
               onResolve={handleLoginSuccess}
               onReject={handleLoginFailure}
             >
@@ -71,7 +70,7 @@ const SignIn = (props) => {
             <LoginSocialApple
               client_id={process.env.REACT_APP_APPLE_ID || ""}
               scope={"name email"}
-              redirect_uri={REDIRECT_URI}
+              redirect_uri={process.env.SIGNIN_SUCCESS_REDIRECT_URI}
               onResolve={handleLoginSuccess}
               onReject={handleLoginFailure}
             >
