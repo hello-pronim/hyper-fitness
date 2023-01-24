@@ -6,7 +6,7 @@ import { Navigate, Route, Routes } from "react-router-dom";
 import AppBar from "./components/AppBar";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Home from "./pages/Home";
-import SignIn from "./pages/Auth/SignIn";
+import SignIn from "./pages/auth/SignIn";
 import React from "react";
 
 function App() {
