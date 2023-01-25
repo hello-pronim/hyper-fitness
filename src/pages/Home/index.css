@@ -3,10 +3,7 @@
   position: relative;
 }
 .page-container {
-  position: absolute;
-  left: 240px;
-  top: 0;
-  width: calc(100vw - 240px);
+  width: 100%;
 }
 .chat-log {
   background-color: #f2f2f2;

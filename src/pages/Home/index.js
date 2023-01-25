@@ -77,7 +77,7 @@ const Home = () => {
 
   return (
     <div className="home">
-      <SideBar />
+      {/* <SideBar /> */}
       <div className="page-container">
         <div className="chat-log">
           <div className="chat-log-container">
