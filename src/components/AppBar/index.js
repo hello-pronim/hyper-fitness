@@ -6,10 +6,10 @@ import { AuthContext } from "../../contexts/AuthContext";
 
 const AppBar = () => {
   const navigate = useNavigate();
-  const { user, signOut } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
-  const handleSignOut = () => {
-    signOut();
+  const handleSignOut = async () => {
+    await logOut();
     navigate("/sign-in");
   };
 

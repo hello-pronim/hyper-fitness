@@ -1,105 +1,59 @@
-import { createContext, useCallback, useEffect, useReducer } from "react";
+import { createContext, useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { onAuthStateChanged, signInWithPopup, signOut } from "firebase/auth";
 
-const INITIALIZE = "INITIALIZE";
-const SIGN_OUT = "SIGN_OUT";
-
-const initialState = {
-  isAuthenticated: false,
-  isInitialized: false,
-  user: null,
-  provider: "",
-};
-
-const reducer = (state, action) => {
-  if (action.type === INITIALIZE) {
-    const { isAuthenticated, user, provider } = action.payload;
-
-    return {
-      ...state,
-      isAuthenticated,
-      isInitialized: true,
-      user,
-      provider,
-    };
-  }
-  if (action.type === SIGN_OUT) {
-    return {
-      ...state,
-      isAuthenticated: false,
-      user: null,
-      provider: "",
-    };
-  }
-  return state;
-};
+import {
+  auth,
+  googleProvider,
+  facebookProvider,
+  appleProvider,
+} from "../firebase/firebase";
 
 const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  const initialize = useCallback(async () => {
-    localStorage.clear();
-    dispatch({
-      type: INITIALIZE,
-      payload: {
-        isAuthenticated: false,
-        user: null,
-        provider: "",
-      },
-    });
-  }, []);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
-    const userData = JSON.parse(localStorage.getItem("user"));
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      if (currentUser) navigate("/");
+      else signOut(auth);
+    });
 
-    if (!userData) {
-      navigate("/sign-in");
-    } else {
-      const data = JSON.parse(localStorage.getItem("user"));
+    return () => {
+      unsubscribe();
+    };
+  }, [navigate]);
 
-      dispatch({
-        type: INITIALIZE,
-        payload: {
-          isAuthenticated: true,
-          user: data?.user,
-          provider: data?.provider,
-        },
-      });
+  const logIn = useCallback(async (authProvider) => {
+    let provider = googleProvider;
+
+    switch (authProvider) {
+      case "google":
+        provider = googleProvider;
+        break;
+      case "facebook":
+        provider = facebookProvider;
+        break;
+      case "apple":
+        provider = appleProvider;
+        break;
+      default:
+        provider = googleProvider;
+        break;
     }
+
+    await signInWithPopup(auth, provider);
   }, []);
 
-  const signIn = useCallback((authUser, authProvider) => {
-    localStorage.setItem(
-      "user",
-      JSON.stringify({ user: authUser, provider: authProvider })
-    );
-    dispatch({
-      type: INITIALIZE,
-      payload: {
-        isAuthenticated: true,
-        user: authUser,
-        provider: authProvider,
-      },
-    });
-  }, []);
-
-  const signOut = useCallback(() => {
-    localStorage.clear();
-    dispatch({
-      type: INITIALIZE,
-      payload: {
-        isAuthenticated: false,
-        user: null,
-        provider: "",
-      },
-    });
+  const logOut = useCallback(() => {
+    signOut(auth);
   }, []);
 
   return (
-    <AuthContext.Provider value={{ ...state, initialize, signIn, signOut }}>
+    <AuthContext.Provider value={{ user, logIn, logOut }}>
       {children}
     </AuthContext.Provider>
   );
