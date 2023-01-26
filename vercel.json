@@ -3,7 +3,7 @@
   "builds": [
     {
       "src": "./server/index.cjs",
-      "use": "@vercel/node"
+      "use": "@vercel/node-cjs"
     },
     {
       "src": "./build",
@@ -13,7 +13,7 @@
   "rewrites": [
     {
       "source": "/api/(.*)",
-      "destination": "./server/index.cjs"
+      "destination": "./server"
     }
   ]
 }
