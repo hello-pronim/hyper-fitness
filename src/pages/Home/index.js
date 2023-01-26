@@ -45,7 +45,7 @@ const Home = () => {
     // fetch response to the api combining the chat log array of messages and seinding it as a message to localhost:3000 as a post
     const messages = chatLogNew.map((message) => message.message).join("\n");
     setLoading(true);
-    const response = await fetch(process.env.REACT_APP_RENDER_URL, {
+    const response = await fetch("/api/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "builds": [
+    { "src": "server/index.cjs", "use": "@now/node" },
+    {
+      "src": "src/index.js",
+      "use": "@now/static-build",
+      "config": { "distDir": "src" }
+    }
+  ],
+  "routes": [
+    { "src": "/api/(.*)", "dest": "server/index.cjs" },
+    { "src": "/(.*)", "dest": "src/index.html" }
+  ]
+}
