@@ -3,7 +3,10 @@
   "builds": [
     {
       "src": "./server/index.cjs",
-      "use": "@vercel/node-cjs"
+      "use": "@vercel/node",
+      "config": {
+        "command": "node -r esm --input-type=cjs $SRC_DIR/index.cjs"
+      }
     },
     {
       "src": "./build",
