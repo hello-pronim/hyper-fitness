@@ -1,15 +1,19 @@
 {
   "version": 2,
   "builds": [
-    { "src": "server/index.cjs", "use": "@now/node" },
     {
-      "src": "src/index.js",
-      "use": "@now/static-build",
-      "config": { "distDir": "src" }
+      "src": "./server/index.cjs",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "./build",
+      "use": "@vercel/static"
     }
   ],
-  "routes": [
-    { "src": "/api/(.*)", "dest": "server/index.cjs" },
-    { "src": "/(.*)", "dest": "src/index.html" }
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "./server/index.cjs"
+    }
   ]
 }
