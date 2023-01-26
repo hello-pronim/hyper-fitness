@@ -1,18 +1,5 @@
 {
   "version": 2,
-  "builds": [
-    {
-      "src": "server/index.cjs",
-      "use": "@vercel/node",
-      "config": {
-        "command": "node -r esm --input-type=cjs $SRC_DIR/server/index.cjs"
-      }
-    },
-    {
-      "src": "build",
-      "use": "@vercel/static"
-    }
-  ],
   "rewrites": [
     {
       "source": "/api/(.*)",
