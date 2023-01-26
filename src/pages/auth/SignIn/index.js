@@ -12,6 +12,7 @@ import { AuthContext } from "../../../contexts/AuthContext";
 const SignIn = (props) => {
   const navigate = useNavigate();
   const { logIn } = useContext(AuthContext);
+  console.log(process.env);
 
   const signInWithGoogle = async () => {
     await logIn("google");
@@ -38,12 +39,12 @@ const SignIn = (props) => {
             <GoogleLoginButton onClick={signInWithGoogle}>
               Sign in with Google
             </GoogleLoginButton>
-            {/* <FacebookLoginButton onClick={signInWithFacebook}>
+            <FacebookLoginButton onClick={signInWithFacebook}>
               Sign in with Facebook
             </FacebookLoginButton>
             <AppleLoginButton onClick={signInWithApple}>
               Sign in with Apple
-            </AppleLoginButton> */}
+            </AppleLoginButton>
           </div>
         </div>
       </div>
