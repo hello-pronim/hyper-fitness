@@ -13,13 +13,14 @@ const Home = () => {
   const [currentModel, setCurrentModel] = useState("text-davinci-003");
   const [chatLog, setChatLog] = useState([]);
   const [loading, setLoading] = useState(false);
+  const apiUrl = process.env.REACT_APP_API_URL;
 
   useEffect(() => {
     getEngines();
   }, []);
 
   const getEngines = () => {
-    fetch(`${process.env.REACT_APP_API_URL}/models`)
+    fetch(`${apiUrl}/models`)
       .then((res) => res.json())
       .then((data) => {
         // set models in order alphabetically
@@ -45,7 +46,7 @@ const Home = () => {
     // fetch response to the api combining the chat log array of messages and seinding it as a message to localhost:3000 as a post
     const messages = chatLogNew.map((message) => message.message).join("\n");
     setLoading(true);
-    const response = await fetch(process.env.REACT_APP_RENDER_URL, {
+    const response = await fetch(`${apiUrl}/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

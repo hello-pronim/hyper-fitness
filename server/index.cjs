@@ -13,7 +13,7 @@ const openai = new OpenAIApi(configuration);
 
 // Express Configuration
 const app = express();
-const port = process.env.PORT;
+const port = process.env.PORT || 5000;
 
 app.use(bodyParser.json());
 app.use(cors());
@@ -24,6 +24,7 @@ app.use(require("morgan")("dev"));
 // Primary Open AI Route
 app.post("/", async (req, res) => {
   const { message, currentModel, temperature } = req.body;
+  console.log("AAAAA", req);
   const response = await openai.createCompletion({
     model: `${currentModel}`,
     prompt: `Hyper: Hey. I'm Hyper, your fitness coach. You can use me to track your food and generate exercises.\n
