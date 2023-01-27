@@ -23,6 +23,7 @@ const Home = () => {
     fetch(`${apiUrl}/models`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         // set models in order alphabetically
         data.models.data.sort((a, b) => {
           if (a.id < b.id) {
@@ -58,6 +59,7 @@ const Home = () => {
     });
     setLoading(false);
     const data = await response.json();
+    console.log(data);
     setChatLog([...chatLogNew, { user: "gpt", message: `${data.message}` }]);
     var scrollToTheBottomChatLog =
       document.getElementsByClassName("chat-log")[0];
